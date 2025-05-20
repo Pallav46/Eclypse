@@ -88,15 +88,13 @@ export default function Testimonials() {
             <div className="text-gray-500 text-base pl-16">{testimonials[activeTestimonial].location}</div>
           </div>
 
-          <div className={`flex ${isMobile ? "flex-row" : "flex-col"} items-center gap-6 mt-8 md:mt-0`}>
+          <div className="flex flex-row items-center gap-6 mt-8 md:mt-0">
             <button
-              className={`bg-transparent border-none text-white text-2xl cursor-pointer transform ${
-                isMobile ? "rotate-[270deg]" : "rotate-180"
-              }`}
+              className="bg-transparent border-none text-white text-2xl cursor-pointer"
               onClick={handleNextTestimonial}
               aria-label="Next testimonial"
             >
-              <ArrowRight size={24} />
+              <ArrowRight size={24} className={`transform ${isMobile ? "rotate-[270deg]" : "rotate-180"}`} />
             </button>
 
             <div className={`flex ${isMobile ? "flex-row" : "flex-col"} gap-4`}>

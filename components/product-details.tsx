@@ -17,7 +17,7 @@ export default function ProductDetails() {
         <div className="flex-1 relative min-h-[400px] md:min-h-[600px] bg-black flex items-center justify-center">
           <div className="w-full h-full">
             <video autoPlay muted loop playsInline className="w-full h-full object-cover">
-              <source src="/videos/product-video.mp4" type="video/mp4" />
+              <source src="/videos/product-detail.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>

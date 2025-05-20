@@ -6,8 +6,10 @@ import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { ChevronLeft } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export default function CheckoutPage() {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -49,6 +51,10 @@ export default function CheckoutPage() {
     }
   }
 
+  const handleBackClick = () => {
+    router.push("/")
+  }
+
   return (
     <div className="max-w-7xl mx-auto px-5 bg-white text-black min-h-screen">
       <header className="flex justify-between items-center py-4">
@@ -78,7 +84,7 @@ export default function CheckoutPage() {
         </div>
       </header>
 
-      <div className="flex items-center gap-3 my-6 text-xl font-medium">
+      <div className="flex items-center gap-3 my-6 text-xl font-medium cursor-pointer" onClick={handleBackClick}>
         <ChevronLeft size={24} />
         <span>Shipping Address</span>
       </div>
@@ -104,7 +110,7 @@ export default function CheckoutPage() {
                 <input
                   type="text"
                   id="firstName"
-                  className="w-full p-3 border border-gray-200 rounded-md text-base"
+                  className="w-full p-3 border border-gray-200 rounded-md text-base text-black bg-white"
                   value={formData.firstName}
                   onChange={handleChange}
                   required
@@ -117,7 +123,7 @@ export default function CheckoutPage() {
                 <input
                   type="text"
                   id="lastName"
-                  className="w-full p-3 border border-gray-200 rounded-md text-base"
+                  className="w-full p-3 border border-gray-200 rounded-md text-base text-black bg-white"
                   value={formData.lastName}
                   onChange={handleChange}
                   required
@@ -132,7 +138,7 @@ export default function CheckoutPage() {
               <input
                 type="text"
                 id="street"
-                className="w-full p-3 border border-gray-200 rounded-md text-base"
+                className="w-full p-3 border border-gray-200 rounded-md text-base text-black bg-white"
                 value={formData.street}
                 onChange={handleChange}
                 required
@@ -147,7 +153,7 @@ export default function CheckoutPage() {
                 <input
                   type="text"
                   id="aptNumber"
-                  className="w-full p-3 border border-gray-200 rounded-md text-base"
+                  className="w-full p-3 border border-gray-200 rounded-md text-base text-black bg-white"
                   value={formData.aptNumber}
                   onChange={handleChange}
                 />
@@ -159,7 +165,7 @@ export default function CheckoutPage() {
                 <input
                   type="text"
                   id="state"
-                  className="w-full p-3 border border-gray-200 rounded-md text-base"
+                  className="w-full p-3 border border-gray-200 rounded-md text-base text-black bg-white"
                   value={formData.state}
                   onChange={handleChange}
                   required
@@ -172,7 +178,7 @@ export default function CheckoutPage() {
                 <input
                   type="text"
                   id="zip"
-                  className="w-full p-3 border border-gray-200 rounded-md text-base"
+                  className="w-full p-3 border border-gray-200 rounded-md text-base text-black bg-white"
                   value={formData.zip}
                   onChange={handleChange}
                   required

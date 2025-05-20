@@ -52,11 +52,11 @@ export default function Footer() {
             </div>
 
             <button
-              className="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center cursor-pointer hover:bg-neutral-700 transition-colors"
+              className="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center cursor-pointer transition-colors hover:bg-white group"
               onClick={handleScrollToTop}
               aria-label="Scroll to top"
             >
-              <ArrowUp size={18} />
+              <ArrowUp size={18} className="text-white group-hover:text-black transition-colors" />
             </button>
           </div>
         </div>

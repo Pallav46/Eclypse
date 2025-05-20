@@ -43,7 +43,7 @@ function GridItem({
       onMouseLeave={() => setIsHovered(false)}
     >
       {type === "video" ? (
-        <video poster="/images/product4.jpg" controls className="w-full h-full object-cover">
+        <video autoPlay muted loop playsInline className="w-full h-full object-cover">
           <source src={src} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
@@ -83,7 +83,7 @@ export default function ProductGrid() {
   const gridItems = [
     {
       type: "video" as const,
-      src: "/videos/fashion.mp4",
+      src: "/videos/grid-fashion.mp4",
       colSpan: 2,
       aspectRatio: "aspect-video",
       alt: "",
