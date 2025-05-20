@@ -60,7 +60,7 @@ function GridItem({
             width={400}
             height={450}
             className={`w-full h-full object-cover transition-all duration-300 ${
-              isHovered ? "blur-sm brightness-75" : ""
+              isHovered && type !== "video" ? "blur-sm brightness-75" : ""
             }`}
           />
 
