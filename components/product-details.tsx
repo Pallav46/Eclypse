@@ -3,6 +3,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
+import { getAssetPath } from "@/utils/asset-path"
 
 export default function ProductDetails() {
   const [selectedSize, setSelectedSize] = useState<string | null>(null)
@@ -17,7 +18,7 @@ export default function ProductDetails() {
         <div className="flex-1 relative min-h-[400px] md:min-h-[600px] bg-black flex items-center justify-center">
           <div className="w-full h-full">
             <video autoPlay muted loop playsInline className="w-full h-full object-cover">
-              <source src="/videos/video2.mp4" type="video/mp4" />
+              <source src={getAssetPath("/videos/video2.mp4")} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
@@ -34,9 +35,9 @@ export default function ProductDetails() {
 
           <div className="flex gap-4 mb-10">
             {[
-              { src: "/images/detail1.jpg", alt: "Red suit blazer close-up" },
-              { src: "/images/detail2.jpg", alt: "Red suit blazer side view" },
-              { src: "/images/detail3.jpg", alt: "Red suit full outfit" },
+              { src: getAssetPath("/images/detail1.jpg"), alt: "Red suit blazer close-up" },
+              { src: getAssetPath("/images/detail2.jpg"), alt: "Red suit blazer side view" },
+              { src: getAssetPath("/images/detail3.jpg"), alt: "Red suit full outfit" },
             ].map((img, i) => (
               <div key={i} className="w-1/3">
                 <Image

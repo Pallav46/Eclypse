@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
+import { getAssetPath } from "@/utils/asset-path"
 
 interface GridItemProps {
   type: "image" | "video"
@@ -87,7 +88,7 @@ export default function ProductGrid() {
   const gridItems = [
     {
       type: "video" as const,
-      src: "/videos/video3.mp4",
+      src: getAssetPath("/videos/video3.mp4"),
       colSpan: 2,
       aspectRatio: "aspect-video",
       alt: "",
@@ -95,25 +96,25 @@ export default function ProductGrid() {
     },
     {
       type: "image" as const,
-      src: "/images/fabric.jpg",
+      src: getAssetPath("/images/fabric.jpg"),
       alt: "Premium wool blend",
       hoverText: "Premium wool blend in signature vermilion",
     },
     {
       type: "image" as const,
-      src: "/images/product1.jpg",
+      src: getAssetPath("/images/product1.jpg"),
       alt: "Discreet side pockets",
       hoverText: "Discreet side pockets",
     },
     {
       type: "image" as const,
-      src: "/images/detail2.jpg",
+      src: getAssetPath("/images/detail2.jpg"),
       alt: "Hand-cut and assembled",
       hoverText: "Hand-cut and assembled in small batches",
     },
     {
       type: "image" as const,
-      src: "/logo/logo.png",
+      src: getAssetPath("/logo/logo.png"),
       alt: "Eclypse Detail",
       hoverText: "Eclypse®",
       isLast: true,

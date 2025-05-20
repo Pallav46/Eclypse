@@ -4,6 +4,7 @@ import { useState } from "react"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { useMobile } from "@/hooks/use-mobile"
+import { getAssetPath } from "@/utils/asset-path"
 
 interface Testimonial {
   id: number
@@ -24,21 +25,21 @@ export default function Testimonials() {
       text: "Understated, but unforgettable. It feels like it was made for me",
       author: "Sarah Johnson",
       location: "NY, USA",
-      avatar: "/images/avatar1.jpg",
+      avatar: getAssetPath("/images/avatar1.jpg"),
     },
     {
       id: 2,
       text: "The quality exceeded my expectations. Truly a remarkable experience",
       author: "John Smith",
       location: "LA, USA",
-      avatar: "/images/avatar2.jpg",
+      avatar: getAssetPath("/images/avatar2.jpg"),
     },
     {
       id: 3,
       text: "Simple elegance with outstanding performance. Worth every penny",
       author: "Emma Chen",
       location: "London, UK",
-      avatar: "/images/avatar3.jpg",
+      avatar: getAssetPath("/images/avatar3.jpg"),
     },
   ]
 

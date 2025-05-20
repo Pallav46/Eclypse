@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { getAssetPath } from "@/utils/asset-path"
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false)
@@ -26,7 +27,7 @@ export default function Hero() {
           playsInline
           className="w-full h-auto max-h-[calc(100vh-64px-72px-5vh)] min-h-[300px] object-cover"
         >
-          <source src="/videos/hero_video.mp4" type="video/mp4" />
+          <source src={getAssetPath("/videos/hero_video.mp4")} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 

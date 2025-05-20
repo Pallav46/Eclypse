@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
+import { getAssetPath } from "@/utils/asset-path"
 
 export default function Navbar() {
   const pathname = usePathname()
@@ -26,7 +27,7 @@ export default function Navbar() {
     >
       <div className="flex justify-between items-center">
         <div className="logo">
-          <Image src="/logo/logo.png" alt="Eclypse Logo" width={32} height={32} />
+          <Image src={getAssetPath("/logo/logo.png") || "/placeholder.svg"} alt="Eclypse Logo" width={32} height={32} />
         </div>
         <ul className="flex items-center gap-4 md:gap-8">
           <li>

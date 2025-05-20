@@ -7,6 +7,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { ChevronLeft } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { getAssetPath } from "@/utils/asset-path"
 
 export default function CheckoutPage() {
   const router = useRouter()
@@ -59,7 +60,7 @@ export default function CheckoutPage() {
     <div className="mx-auto px-5 bg-white text-black min-h-screen">
       <header className="flex justify-between items-center py-4">
         <div className="w-[42px] h-[42px] bg-black rounded-lg flex items-center justify-center">
-          <Image src="/logo/logo.png" alt="Eclypse Logo" width={24} height={24} />
+          <Image src={getAssetPath("/logo/logo.png") || "/placeholder.svg"} alt="Eclypse Logo" width={24} height={24} />
         </div>
 
         <div className="flex gap-6">
