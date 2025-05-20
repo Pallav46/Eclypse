@@ -26,7 +26,7 @@ export default function Navbar() {
     >
       <div className="flex justify-between items-center">
         <div className="logo">
-          <Image src="/logo.png" alt="Eclypse Logo" width={32} height={32} />
+          <Image src="/logo/logo.png" alt="Eclypse Logo" width={32} height={32} />
         </div>
         <ul className="flex items-center gap-4 md:gap-8">
           <li>

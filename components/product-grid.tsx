@@ -59,7 +59,7 @@ function GridItem({
             width={400}
             height={450}
             className={`w-full h-full object-cover transition-all duration-300 ${
-              isHovered && type !== "video" ? "blur-sm brightness-75" : ""
+              isHovered ? "blur-sm brightness-75" : ""
             }`}
           />
 
@@ -87,7 +87,7 @@ export default function ProductGrid() {
   const gridItems = [
     {
       type: "video" as const,
-      src: "/videos/grid-fashion.mp4",
+      src: "/videos/video3.mp4",
       colSpan: 2,
       aspectRatio: "aspect-video",
       alt: "",
@@ -113,7 +113,7 @@ export default function ProductGrid() {
     },
     {
       type: "image" as const,
-      src: "/logo.png",
+      src: "/logo/logo.png",
       alt: "Eclypse Detail",
       hoverText: "Eclypse®",
       isLast: true,

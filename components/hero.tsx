@@ -26,7 +26,7 @@ export default function Hero() {
           playsInline
           className="w-full h-auto max-h-[calc(100vh-64px-72px-5vh)] min-h-[300px] object-cover"
         >
-          <source src="/videos/hero-fashion.mp4" type="video/mp4" />
+          <source src="/videos/hero_video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
