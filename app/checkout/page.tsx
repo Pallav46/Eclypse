@@ -57,7 +57,7 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-5 bg-white text-black min-h-screen">
+    <div className="mx-auto px-5 bg-white text-black min-h-screen">
       <header className="flex justify-between items-center py-4">
         <div className="w-[42px] h-[42px] bg-black rounded-lg flex items-center justify-center">
           <Image src={getAssetPath("/logo/logo.png") || "/placeholder.svg"} alt="Eclypse Logo" width={24} height={24} />
