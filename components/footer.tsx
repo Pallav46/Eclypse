@@ -5,15 +5,20 @@ import type React from "react"
 import Link from "next/link"
 import { ArrowUpRight, ArrowUp } from "lucide-react"
 import { useInView } from "@/utils/animation"
+import { useLocomotiveScroll } from "@/components/smooth-scroll-provider"
 
 export default function Footer() {
   const [ref, isInView] = useInView({ threshold: 0.2 })
+  const locomotiveScroll = useLocomotiveScroll()
 
   const handleScrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    })
+    if (locomotiveScroll) {
+      locomotiveScroll.scrollTo(0, { duration: 800, easing: [0.25, 0.0, 0.35, 1.0] })
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" })
+      document.documentElement.scrollTop = 0
+      document.body.scrollTop = 0
+    }
   }
 
   return (

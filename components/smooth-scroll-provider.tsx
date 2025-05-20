@@ -2,11 +2,18 @@
 
 import type React from "react"
 
-import { useEffect, useRef, useState } from "react"
+import { createContext, useContext, useEffect, useRef, useState } from "react"
 import { usePathname } from "next/navigation"
 
 interface SmoothScrollProviderProps {
   children: React.ReactNode
+}
+
+// Create context
+export const LocomotiveScrollContext = createContext<any>(null)
+
+export function useLocomotiveScroll() {
+  return useContext(LocomotiveScrollContext)
 }
 
 export default function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
@@ -56,8 +63,10 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
   }, [pathname, locomotiveScroll])
 
   return (
-    <div ref={scrollRef} data-scroll-container className="scroll-container">
-      {children}
-    </div>
+    <LocomotiveScrollContext.Provider value={locomotiveScroll}>
+      <div ref={scrollRef} data-scroll-container className="scroll-container">
+        {children}
+      </div>
+    </LocomotiveScrollContext.Provider>
   )
 }
