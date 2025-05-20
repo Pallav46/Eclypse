@@ -114,7 +114,7 @@ importers:
         specifier: 1.4.1
         version: 1.4.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       locomotive-scroll:
-        specifier: latest
+        specifier: ^4.1.4
         version: 4.1.4
       lucide-react:
         specifier: ^0.454.0
