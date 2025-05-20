@@ -1,9 +1,14 @@
 "use client"
 
+import type React from "react"
+
 import Link from "next/link"
 import { ArrowUpRight, ArrowUp } from "lucide-react"
+import { useInView } from "@/utils/animation"
 
 export default function Footer() {
+  const [ref, isInView] = useInView({ threshold: 0.2 })
+
   const handleScrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -12,11 +17,22 @@ export default function Footer() {
   }
 
   return (
-    <footer className="py-16 md:py-20 px-6 md:px-10 border-t border-neutral-800">
-      <div className="container">
+    <footer
+      className="py-16 md:py-20 px-6 md:px-10 border-t border-neutral-800"
+      data-scroll-section
+      ref={ref as React.RefObject<HTMLElement>}
+    >
+      <div
+        className={`container transition-all duration-1000 ${
+          isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
+        }`}
+      >
         <div className="flex flex-col md:flex-row justify-between items-start">
           <div className="mb-8 md:mb-0">
-            <Link href="/" className="text-3xl font-medium mb-8 inline-block text-white no-underline">
+            <Link
+              href="/"
+              className="text-3xl font-medium mb-8 inline-block text-white no-underline hover:text-red-500 transition-colors"
+            >
               Eclypse
               <span className="text-sm align-super">
                 <ArrowUpRight size={14} className="inline" />
@@ -24,19 +40,19 @@ export default function Footer() {
             </Link>
 
             <div className="flex flex-wrap gap-4 md:gap-6 mb-6">
-              <Link href="/" className="text-white hover:underline text-sm">
+              <Link href="/" className="text-white hover:text-red-500 hover:underline text-sm transition-colors">
                 Home
               </Link>
-              <Link href="#" className="text-white hover:underline text-sm">
+              <Link href="#" className="text-white hover:text-red-500 hover:underline text-sm transition-colors">
                 About
               </Link>
-              <Link href="#" className="text-white hover:underline text-sm">
+              <Link href="#" className="text-white hover:text-red-500 hover:underline text-sm transition-colors">
                 Buy
               </Link>
-              <Link href="#" className="text-white hover:underline text-sm">
+              <Link href="#" className="text-white hover:text-red-500 hover:underline text-sm transition-colors">
                 Our Customers
               </Link>
-              <Link href="#" className="text-white hover:underline text-sm">
+              <Link href="#" className="text-white hover:text-red-500 hover:underline text-sm transition-colors">
                 Contacts
               </Link>
             </div>
@@ -52,7 +68,7 @@ export default function Footer() {
             </div>
 
             <button
-              className="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center cursor-pointer transition-colors hover:bg-white group"
+              className="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center cursor-pointer transition-all hover:bg-white group hover:scale-110"
               onClick={handleScrollToTop}
               aria-label="Scroll to top"
             >

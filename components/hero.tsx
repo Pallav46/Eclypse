@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { getAssetPath } from "@/utils/asset-path"
+import ParallaxSection from "@/components/parallax-section"
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false)
@@ -11,27 +12,34 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative bg-black pt-16">
+    <section className="relative bg-black pt-16" data-scroll-section>
       <div className="flex justify-between items-center px-6 md:px-10 py-5">
-        <h1 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-white">
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-white animate-fade-in">
           Eclypse<span className="text-sm align-super ml-0.5">®</span>
         </h1>
         <span className="text-sm md:text-base text-white">© 2025</span>
       </div>
 
-      <div className="relative">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-auto max-h-[calc(100vh-64px-72px-5vh)] min-h-[300px] object-cover"
-        >
-          <source src={getAssetPath("/videos/hero_video.mp4")} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+      <div className="relative overflow-hidden">
+        <ParallaxSection speed={0.15} direction="up">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-auto max-h-[calc(100vh-64px-72px-5vh)] min-h-[300px] object-cover scale-110"
+          >
+            <source src={getAssetPath("/videos/hero_video.mp4")} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </ParallaxSection>
 
-        <div className="absolute bottom-5 md:bottom-10 right-5 md:right-10 max-w-[50%] text-right">
+        <div
+          className="absolute bottom-5 md:bottom-10 right-5 md:right-10 max-w-[50%] text-right"
+          data-scroll
+          data-scroll-speed="2"
+          data-scroll-delay="0.1"
+        >
           <h2
             className={`text-lg md:text-2xl lg:text-3xl font-normal text-white drop-shadow-md transform ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"

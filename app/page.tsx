@@ -6,19 +6,22 @@ import ProductDetails from "@/components/product-details"
 import ProductAccordion from "@/components/product-accordion"
 import Testimonials from "@/components/testimonials"
 import Footer from "@/components/footer"
+import SmoothScrollProvider from "@/components/smooth-scroll-provider"
 
 export default function Home() {
   return (
-    <main className="bg-black text-white min-h-screen">
-      <Navbar />
-      <Hero />
-      <Philosophy />
-      <ProductGrid />
-      <Philosophy title="Silhouette No. 1 - Vermilion" showLearnMore={false} id="silhouette-vermilion-intro" />
-      <ProductDetails />
-      <ProductAccordion />
-      <Testimonials />
-      <Footer />
-    </main>
+    <SmoothScrollProvider>
+      <main className="bg-black text-white min-h-screen">
+        <Navbar />
+        <Hero />
+        <Philosophy />
+        <ProductGrid />
+        <Philosophy title="Silhouette No. 1 - Vermilion" showLearnMore={false} id="silhouette-vermilion-intro" />
+        <ProductDetails />
+        <ProductAccordion />
+        <Testimonials />
+        <Footer />
+      </main>
+    </SmoothScrollProvider>
   )
 }

@@ -4,6 +4,7 @@ import type React from "react"
 
 import { useState } from "react"
 import { ChevronDown } from "lucide-react"
+import { useInView } from "@/utils/animation"
 
 interface AccordionItemProps {
   title: string
@@ -25,9 +26,11 @@ function AccordionItem({ title, children, isActive, onClick }: AccordionItemProp
         </div>
       </div>
 
-      <div className={`overflow-hidden transition-all duration-300 ${isActive ? "max-h-[500px]" : "max-h-0"}`}>
+      <div
+        className={`overflow-hidden transition-all duration-500 ease-in-out ${isActive ? "max-h-[500px]" : "max-h-0"}`}
+      >
         <div
-          className={`px-4 pb-6 transition-all duration-300 ${
+          className={`px-4 pb-6 transition-all duration-500 ${
             isActive ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2.5"
           }`}
         >
@@ -40,14 +43,21 @@ function AccordionItem({ title, children, isActive, onClick }: AccordionItemProp
 
 export default function ProductAccordion() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
+  const [ref, isInView] = useInView({ threshold: 0.1 })
 
   const handleToggle = (index: number) => {
     setActiveIndex(activeIndex === index ? null : index)
   }
 
   return (
-    <div className="py-16 md:py-20 px-6 md:px-10">
-      <div className="w-full">
+    <div className="py-16 md:py-20 px-6 md:px-10" data-scroll-section ref={ref as React.RefObject<HTMLDivElement>}>
+      <div
+        className={`w-full transition-all duration-1000 ${
+          isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
+        }`}
+        data-scroll
+        data-scroll-speed="0.5"
+      >
         <AccordionItem title="Size & Fit" isActive={activeIndex === 0} onClick={() => handleToggle(0)}>
           <p className="text-white/80 mb-4">
             This garment is designed with a tailored fit that offers both structure and comfort.

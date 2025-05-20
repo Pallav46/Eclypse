@@ -1,8 +1,11 @@
 "use client"
 
+import type React from "react"
+
 import { useState } from "react"
 import Image from "next/image"
 import { getAssetPath } from "@/utils/asset-path"
+import { useInView } from "@/utils/animation"
 
 interface GridItemProps {
   type: "image" | "video"
@@ -26,6 +29,7 @@ function GridItem({
   index = 0,
 }: GridItemProps) {
   const [isHovered, setIsHovered] = useState(false)
+  const [ref, isInView] = useInView({ threshold: 0.1 })
 
   // Define specific aspect ratios based on index
   const getAspectRatio = () => {
@@ -37,15 +41,21 @@ function GridItem({
 
   return (
     <div
+      ref={ref as React.RefObject<HTMLDivElement>}
       className={`relative overflow-hidden bg-neutral-900 ${
         colSpan > 1 ? `md:col-span-${colSpan}` : ""
-      } ${getAspectRatio()}`}
+      } ${getAspectRatio()} transition-all duration-1000 ${
+        isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
+      }`}
       style={{
         // Fallback inline styles for aspect ratio to ensure consistency
         aspectRatio: type === "video" ? "16/9" : index === 1 ? "4/5" : index >= 2 && index <= 4 ? "4/3" : "3/4",
+        transitionDelay: `${index * 150}ms`,
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      data-scroll
+      data-scroll-speed={index % 2 === 0 ? "0.5" : "-0.5"}
     >
       {type === "video" ? (
         <video autoPlay muted loop playsInline className="w-full h-full object-cover">
@@ -60,7 +70,7 @@ function GridItem({
             width={400}
             height={450}
             className={`w-full h-full object-cover transition-all duration-300 ${
-              isHovered && type !== "video" ? "blur-sm brightness-75" : ""
+              isHovered && type !== "video" ? "scale-105 blur-sm brightness-75" : ""
             }`}
           />
 
@@ -122,7 +132,7 @@ export default function ProductGrid() {
   ]
 
   return (
-    <section className="bg-black py-16 md:py-20 px-6 md:px-10">
+    <section className="bg-black py-16 md:py-20 px-6 md:px-10" data-scroll-section>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 px-2.5">
         {gridItems.map((item, index) => (
           <GridItem

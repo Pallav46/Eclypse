@@ -6,12 +6,12 @@ export function useMobile() {
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
-    // Function to check if viewport width is mobile
+    // Function to check if viewport is mobile
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768)
     }
 
-    // Check on initial load
+    // Initial check
     checkMobile()
 
     // Add event listener for window resize
