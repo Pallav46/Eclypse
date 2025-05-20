@@ -14,6 +14,10 @@ const nextConfig = {
   assetPrefix: process.env.NODE_ENV === 'production' ? '.' : '',
   basePath: '',
   trailingSlash: true,
+  // Disable font optimization for static exports
+  experimental: {
+    optimizeFonts: false,
+  }
 }
 
 export default nextConfig;
