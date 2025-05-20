@@ -42,7 +42,7 @@ function GridItem({
   return (
     <div
       ref={ref as React.RefObject<HTMLDivElement>}
-      className={`relative overflow-hidden bg-neutral-900 ${
+      className={`relative overflow-hidden bg-neutral-900 dark:bg-neutral-100 ${
         colSpan > 1 ? `md:col-span-${colSpan}` : ""
       } ${getAspectRatio()} transition-all duration-1000 ${
         isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
@@ -78,7 +78,7 @@ function GridItem({
             <div
               className={`absolute pointer-events-none transition-opacity duration-300 ${
                 isLast
-                  ? "inset-0 flex items-center justify-center text-center bg-black/45 w-full h-full min-h-0 p-2.5"
+                  ? "inset-0 flex items-center justify-center text-center bg-black/45 dark:bg-black/65 w-full h-full min-h-0 p-2.5"
                   : "left-0 bottom-8 w-[65%] max-w-[65%] px-[18px] py-0 flex items-end justify-start text-left h-auto min-h-[48px]"
               } text-white text-base md:text-[clamp(1rem,2vw,1.3rem)] font-semibold leading-tight ${
                 isHovered ? "opacity-100" : "opacity-0"
@@ -132,7 +132,10 @@ export default function ProductGrid() {
   ]
 
   return (
-    <section className="bg-black py-16 md:py-20 px-6 md:px-10" data-scroll-section>
+    <section
+      className="bg-black dark:bg-white py-16 md:py-20 px-6 md:px-10 transition-colors duration-500"
+      data-scroll-section
+    >
       <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 px-2.5">
         {gridItems.map((item, index) => (
           <GridItem

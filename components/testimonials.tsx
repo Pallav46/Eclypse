@@ -72,7 +72,7 @@ export default function Testimonials() {
 
   return (
     <section
-      className="min-h-[80vh] flex flex-col justify-center py-16 md:py-20 px-6 md:px-10"
+      className="min-h-[80vh] flex flex-col justify-center py-16 md:py-20 px-6 md:px-10 bg-black dark:bg-white text-white dark:text-black transition-colors duration-500"
       data-scroll-section
       ref={ref as React.RefObject<HTMLElement>}
     >
@@ -92,7 +92,7 @@ export default function Testimonials() {
             }`}
           >
             <div className="flex">
-              <div className="text-5xl leading-none absolute left-0 top-[-1rem] mt-4 font-serif font-bold text-white">
+              <div className="text-5xl leading-none absolute left-0 top-[-1rem] mt-4 font-serif font-bold text-white dark:text-black font-playfair">
                 "
               </div>
               <div className="text-2xl md:text-3xl lg:text-4xl font-normal leading-tight pl-16">
@@ -100,12 +100,14 @@ export default function Testimonials() {
               </div>
             </div>
             <div className="mt-8 text-lg font-medium pl-16">{testimonials[activeTestimonial].author}</div>
-            <div className="text-gray-500 text-base pl-16">{testimonials[activeTestimonial].location}</div>
+            <div className="text-gray-500 dark:text-gray-600 text-base pl-16">
+              {testimonials[activeTestimonial].location}
+            </div>
           </div>
 
           <div className="flex flex-row items-center gap-6 mt-8 md:mt-0">
             <button
-              className="bg-transparent border-none text-white text-2xl cursor-pointer hover:scale-110 transition-transform"
+              className="bg-transparent border-none text-white dark:text-black text-2xl cursor-pointer hover:scale-110 transition-transform"
               onClick={handleNextTestimonial}
               aria-label="Next testimonial"
             >
@@ -118,7 +120,7 @@ export default function Testimonials() {
                   key={testimonial.id}
                   className={`w-[60px] h-[60px] rounded-full overflow-hidden cursor-pointer transition-all duration-300 ${
                     activeTestimonial === index
-                      ? "opacity-100 border-2 border-white scale-110"
+                      ? "opacity-100 border-2 border-white dark:border-black scale-110"
                       : "opacity-70 hover:opacity-90 hover:scale-105"
                   }`}
                   onClick={() => handleAvatarClick(index)}

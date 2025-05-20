@@ -7,11 +7,13 @@ import ProductAccordion from "@/components/product-accordion"
 import Testimonials from "@/components/testimonials"
 import Footer from "@/components/footer"
 import SmoothScrollProvider from "@/components/smooth-scroll-provider"
+import GrainTexture from "@/components/grain-texture"
 
 export default function Home() {
   return (
     <SmoothScrollProvider>
-      <main className="bg-black text-white min-h-screen">
+      <main className="bg-black dark:bg-white text-white dark:text-black min-h-screen transition-colors duration-500">
+        <GrainTexture />
         <Navbar />
         <Hero />
         <Philosophy />

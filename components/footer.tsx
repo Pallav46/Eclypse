@@ -18,7 +18,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="py-16 md:py-20 px-6 md:px-10 border-t border-neutral-800"
+      className="py-16 md:py-20 px-6 md:px-10 border-t border-neutral-800 dark:border-neutral-200 bg-black dark:bg-white text-white dark:text-black transition-colors duration-500"
       data-scroll-section
       ref={ref as React.RefObject<HTMLElement>}
     >
@@ -31,7 +31,7 @@ export default function Footer() {
           <div className="mb-8 md:mb-0">
             <Link
               href="/"
-              className="text-3xl font-medium mb-8 inline-block text-white no-underline hover:text-red-500 transition-colors"
+              className="text-3xl font-medium mb-8 inline-block text-white dark:text-black no-underline hover:text-red-500 dark:hover:text-red-600 transition-colors font-playfair"
             >
               Eclypse
               <span className="text-sm align-super">
@@ -40,19 +40,34 @@ export default function Footer() {
             </Link>
 
             <div className="flex flex-wrap gap-4 md:gap-6 mb-6">
-              <Link href="/" className="text-white hover:text-red-500 hover:underline text-sm transition-colors">
+              <Link
+                href="/"
+                className="text-white dark:text-black hover:text-red-500 dark:hover:text-red-600 hover:underline text-sm transition-colors"
+              >
                 Home
               </Link>
-              <Link href="#" className="text-white hover:text-red-500 hover:underline text-sm transition-colors">
+              <Link
+                href="#"
+                className="text-white dark:text-black hover:text-red-500 dark:hover:text-red-600 hover:underline text-sm transition-colors"
+              >
                 About
               </Link>
-              <Link href="#" className="text-white hover:text-red-500 hover:underline text-sm transition-colors">
+              <Link
+                href="#"
+                className="text-white dark:text-black hover:text-red-500 dark:hover:text-red-600 hover:underline text-sm transition-colors"
+              >
                 Buy
               </Link>
-              <Link href="#" className="text-white hover:text-red-500 hover:underline text-sm transition-colors">
+              <Link
+                href="#"
+                className="text-white dark:text-black hover:text-red-500 dark:hover:text-red-600 hover:underline text-sm transition-colors"
+              >
                 Our Customers
               </Link>
-              <Link href="#" className="text-white hover:text-red-500 hover:underline text-sm transition-colors">
+              <Link
+                href="#"
+                className="text-white dark:text-black hover:text-red-500 dark:hover:text-red-600 hover:underline text-sm transition-colors"
+              >
                 Contacts
               </Link>
             </div>
@@ -60,24 +75,29 @@ export default function Footer() {
 
           <div className="flex flex-col md:flex-row items-start md:items-end gap-8">
             <div>
-              <h4 className="text-xs text-neutral-600 font-normal mb-2 tracking-wider">CONTACT</h4>
+              <h4 className="text-xs text-neutral-600 dark:text-neutral-500 font-normal mb-2 tracking-wider">
+                CONTACT
+              </h4>
               <p className="text-sm mb-6">+91 123-456-7890</p>
 
-              <h4 className="text-xs text-neutral-600 font-normal mb-2 tracking-wider">EMAIL</h4>
+              <h4 className="text-xs text-neutral-600 dark:text-neutral-500 font-normal mb-2 tracking-wider">EMAIL</h4>
               <p className="text-sm">eclypse@gmail.com</p>
             </div>
 
             <button
-              className="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center cursor-pointer transition-all hover:bg-white group hover:scale-110"
+              className="w-10 h-10 rounded-full bg-neutral-800 dark:bg-neutral-200 flex items-center justify-center cursor-pointer transition-all hover:bg-white dark:hover:bg-black group hover:scale-110"
               onClick={handleScrollToTop}
               aria-label="Scroll to top"
             >
-              <ArrowUp size={18} className="text-white group-hover:text-black transition-colors" />
+              <ArrowUp
+                size={18}
+                className="text-white dark:text-black group-hover:text-black dark:group-hover:text-white transition-colors"
+              />
             </button>
           </div>
         </div>
 
-        <div className="text-right text-xs text-neutral-600 mt-8">© Eclypse 2025</div>
+        <div className="text-right text-xs text-neutral-600 dark:text-neutral-500 mt-8">© Eclypse 2025</div>
       </div>
     </footer>
   )

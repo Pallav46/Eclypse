@@ -20,10 +20,14 @@ export default function Philosophy({
   const [ref, isInView] = useInView({ threshold: 0.2 })
 
   return (
-    <section className="bg-black py-20 md:py-24 px-6 md:px-10" id={id} data-scroll-section>
+    <section
+      className="bg-black dark:bg-white py-20 md:py-24 px-6 md:px-10 transition-colors duration-500"
+      id={id}
+      data-scroll-section
+    >
       <div className="max-w-3xl" ref={ref as React.RefObject<HTMLDivElement>}>
         <h2
-          className={`text-2xl md:text-3xl lg:text-4xl font-normal leading-relaxed text-white mb-12 transition-all duration-1000 ${
+          className={`text-2xl md:text-3xl lg:text-4xl font-normal leading-relaxed text-white dark:text-black mb-12 transition-all duration-1000 ${
             isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
           data-scroll
@@ -35,7 +39,7 @@ export default function Philosophy({
         {showLearnMore && (
           <Link
             href="#"
-            className={`text-white text-base md:text-lg inline-block pb-2 border-b border-white transition-all hover:bg-white hover:text-black hover:pl-2.5 group ${
+            className={`text-white dark:text-black text-base md:text-lg inline-block pb-2 border-b border-white dark:border-black transition-all hover:bg-white dark:hover:bg-black hover:text-black dark:hover:text-white hover:pl-2.5 group ${
               isInView ? "opacity-100 translate-y-0 delay-300" : "opacity-0 translate-y-10"
             }`}
             data-scroll
