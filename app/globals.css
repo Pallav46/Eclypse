@@ -10,6 +10,22 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  .aspect-video {
+    aspect-ratio: 16 / 9;
+  }
+
+  .aspect-\[4\/5\] {
+    aspect-ratio: 4 / 5;
+  }
+
+  .aspect-\[4\/3\] {
+    aspect-ratio: 4 / 3;
+  }
+
+  .aspect-\[3\/4\] {
+    aspect-ratio: 3 / 4;
+  }
 }
 
 @layer base {
@@ -90,5 +106,12 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Ensure grid layout is consistent */
+@media (min-width: 768px) {
+  .md\:col-span-2 {
+    grid-column: span 2 / span 2;
   }
 }

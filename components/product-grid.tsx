@@ -26,19 +26,23 @@ function GridItem({
 }: GridItemProps) {
   const [isHovered, setIsHovered] = useState(false)
 
-  // Determine the correct aspect ratio based on index
-  let itemAspectRatio = aspectRatio
-  if (index === 1) {
-    itemAspectRatio = "aspect-[4/5]"
-  } else if (index >= 2 && index <= 4) {
-    itemAspectRatio = "aspect-[4/3]"
+  // Define specific aspect ratios based on index
+  const getAspectRatio = () => {
+    if (type === "video") return "aspect-[16/9]"
+    if (index === 1) return "aspect-[4/5]"
+    if (index >= 2 && index <= 4) return "aspect-[4/3]"
+    return "aspect-[3/4]"
   }
 
   return (
     <div
       className={`relative overflow-hidden bg-neutral-900 ${
-        colSpan > 1 ? `col-span-${colSpan}` : ""
-      } ${itemAspectRatio}`}
+        colSpan > 1 ? `md:col-span-${colSpan}` : ""
+      } ${getAspectRatio()}`}
+      style={{
+        // Fallback inline styles for aspect ratio to ensure consistency
+        aspectRatio: type === "video" ? "16/9" : index === 1 ? "4/5" : index >= 2 && index <= 4 ? "4/3" : "3/4",
+      }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -117,7 +121,7 @@ export default function ProductGrid() {
   ]
 
   return (
-    <section className="bg-black py-16 md:py-20 px-10">
+    <section className="bg-black py-16 md:py-20 px-6 md:px-10">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 px-2.5">
         {gridItems.map((item, index) => (
           <GridItem
