@@ -11,9 +11,12 @@ import { getAssetPath } from "@/utils/asset-path"
 import { useInView } from "@/utils/animation"
 import ThemeToggle from "@/components/theme-toggle"
 import GrainTexture from "@/components/grain-texture"
+import RazorpayPayment from "@/components/razorpay-payment"
+import { useToast } from "@/hooks/use-toast"
 
 export default function CheckoutPage() {
   const router = useRouter()
+  const { toast } = useToast()
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -33,7 +36,10 @@ export default function CheckoutPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     console.log("Address saved:", formData)
-    alert("Address saved successfully!")
+    toast({
+      title: "Address Saved",
+      description: "Your shipping address has been saved successfully!",
+    })
   }
 
   const handleCancel = () => {
@@ -47,19 +53,48 @@ export default function CheckoutPage() {
     })
   }
 
-  const handlePlaceOrder = () => {
-    const form = document.getElementById("shipping-form") as HTMLFormElement
-    if (form.checkValidity()) {
-      console.log("Order placed!")
-      alert("Thank you for your order!")
-    } else {
-      alert("Please complete the shipping address form before placing your order.")
+  const handlePaymentSuccess = (paymentId: string) => {
+    console.log("Payment successful:", paymentId)
+    toast({
+      title: "Order Placed Successfully!",
+      description: "Thank you for your purchase. You will receive a confirmation email shortly.",
+    })
+    
+    // Redirect to success page or home after a delay
+    setTimeout(() => {
+      router.push("/")
+    }, 3000)
+  }
+
+  const handlePaymentError = (error: any) => {
+    console.error("Payment failed:", error)
+    toast({
+      title: "Payment Failed",
+      description: "Please try again or contact support if the issue persists.",
+      variant: "destructive"
+    })
+  }
+
+  const validateForm = () => {
+    const requiredFields = ['firstName', 'lastName', 'street', 'state', 'zip']
+    const missingFields = requiredFields.filter(field => !formData[field as keyof typeof formData])
+    
+    if (missingFields.length > 0) {
+      toast({
+        title: "Incomplete Address",
+        description: "Please complete the shipping address form before placing your order.",
+        variant: "destructive"
+      })
+      return false
     }
+    return true
   }
 
   const handleBackClick = () => {
     router.push("/")
   }
+
+  const orderTotal = 8199
 
   return (
     <div className="mx-auto px-5 bg-black dark:bg-white text-white dark:text-black min-h-screen transition-colors duration-500">
@@ -257,35 +292,49 @@ export default function CheckoutPage() {
 
           <div className="flex justify-between mb-4">
             <span>Items - Silhouette No. 1 – Vermilion</span>
-            <span>7,999</span>
+            <span>₹7,999</span>
           </div>
 
           <div className="flex justify-between mb-4">
             <span>Shipping and handling:</span>
-            <span>200</span>
+            <span>₹200</span>
           </div>
 
           <div className="flex justify-between mb-4">
             <span>Before tax:</span>
-            <span>6,599</span>
+            <span>₹6,599</span>
           </div>
 
           <div className="flex justify-between mb-4">
             <span>Tax Collected:</span>
-            <span>1,400</span>
+            <span>₹1,400</span>
           </div>
 
           <div className="flex justify-between text-lg font-medium pt-4 mt-2 border-t border-neutral-800 dark:border-neutral-300">
             <span>Order Total:</span>
-            <span>8,199</span>
+            <span>₹{orderTotal.toLocaleString()}</span>
           </div>
 
-          <button
-            className="w-full py-4 bg-white dark:bg-black text-black dark:text-white border-none rounded-md text-base font-medium cursor-pointer mt-8 hover:bg-red-500 dark:hover:bg-red-600 hover:text-white transition-colors hover:scale-[1.02] transform-gpu"
-            onClick={handlePlaceOrder}
+          <RazorpayPayment
+            amount={orderTotal}
+            currency="INR"
+            onSuccess={handlePaymentSuccess}
+            onError={handlePaymentError}
+            disabled={!validateForm()}
+            className="w-full py-4 bg-white dark:bg-black text-black dark:text-white border-none rounded-md text-base font-medium cursor-pointer mt-8 hover:bg-red-500 dark:hover:bg-red-600 hover:text-white transition-colors hover:scale-[1.02] transform-gpu disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Place Order
-          </button>
+            Pay with Razorpay
+          </RazorpayPayment>
+
+          <div className="mt-4 text-center">
+            <div className="flex items-center justify-center gap-2 text-sm text-gray-400 dark:text-gray-600">
+              <span>Secured by</span>
+              <span className="font-semibold text-blue-500">Razorpay</span>
+            </div>
+            <div className="text-xs text-gray-500 dark:text-gray-500 mt-1">
+              UPI, Cards, NetBanking, Wallets accepted
+            </div>
+          </div>
         </div>
       </div>
     </div>
